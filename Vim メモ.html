@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://ntak.net/vim.html/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Vim メモ</title>
+<style>
+code { display: block; margin: 1em 2em; white-space: pre; font-family: monospace; font-size: small; }
+</style>
+</head>
+<body>
+
+<h1>Vim メモ</h1>
+
+<ul>
+  <li><a href="http://ntak.net/vim.html/#build_windows">Windows でのビルド</a>
+    <ul>
+      <li><a href="http://ntak.net/vim.html/#build_windows_overview">概要</a></li>
+      <li><a href="http://ntak.net/vim.html/#build_windows_preparation">ソースコードとビルドツールの準備</a>
+	<ul>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_get_git">Git の取得</a></li>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_get_gettext">gettext/iconv の取得</a></li>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_get_vs">Build Tools for Visual Studio 2019 の取得</a></li>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_set_path">プログラムを起動できるよう設定する</a></li>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_get_source">Vim のソースコードを取得</a></li>
+	</ul>
+      </li>
+      <li><a href="http://ntak.net/vim.html/#build_windows_build">ビルド</a>
+        <ul>
+	  <li><a href="http://ntak.net/vim.html/build_windows_binary">プログラムのビルド</a></li>
+	  <li><a href="http://ntak.net/vim.html/build_windows_text">メッセージテキストファイルのビルド</a></li>
+	</ul>
+      </li>
+      <li><a href="http://ntak.net/vim.html/#build_windows_install">生成したバイナリファイルの配置</a>
+        <ul>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_install_binary">プログラムの配置</a></li>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_install_dll">gettext/iconv の配置</a></li>
+	  <li><a href="http://ntak.net/vim.html/#build_windows_install_text">メッセージテキストファイルの配置</a></li>
+	</ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2><a name="build_windows">Windows でのビルド</a></h2>
+
+<h3><a name="build_windows_overview">概要</a></h3>
+<p>
+どのソフトウェアでも同じですが：<br>
+</p><ul>
+  <li>ソースコードとビルドツールの準備</li>
+  <li>ビルド</li>
+  <li>生成したバイナリファイルの配置</li>
+</ul>
+が必要です。それぞれについて詳細を詰めていきます。
+<p></p>
+
+<h3><a name="build_windows_preparation">ソースコードとビルドツールの準備</a></h3>
+<p>
+<tt>C:\Vim</tt> で作業をします。スタートメニューなどからコマンドラインを開いて：
+<code>cmd</code>
+フォルダ <tt>C:\Vim</tt> を作ります：
+<code>mkdir C:\Vim</code>
+フォルダ内に移動して、準備を始めます：
+<code>cd C:\Vim</code>
+</p>
+
+<h4><a name="build_windows_get_git">Git の取得</a></h4>
+<p>
+<a href="https://github.com/git-for-windows/git/releases/">https://github.com/git-for-windows/git/releases/</a> にある <tt>PortableGit-2.21.0-64-bit.7z.exe</tt> をダウンロード、ダブルクリックで実行してください。バージョン番号 (ここでは <tt>2.21.0</tt>) は読みかえる必要があるかもしれません。
+</p>
+<p>
+展開先のフォルダ名を入力し (ここでは <tt>C:\Vim\PortableGit</tt>) 、<tt>C:\Vim</tt> フォルダの中に展開します。(本来的に展開先としてふさわしいフォルダは別の場所にありますが、説明を簡単にするため <tt>C:\Vim</tt> としました)
+</p>
+
+<h4><a name="build_windows_get_gettext">gettext/iconv の取得</a></h4>
+<p>
+<a href="https://github.com/mlocati/gettext-iconv-windows/releases">https://github.com/mlocati/gettext-iconv-windows/releases</a> にある <tt>gettext0.19.8.1-iconv1.15-shared-64.zip</tt> をダウンロードし、<tt>C:\Vim\gettext64</tt> にすべて展開します。
+</p>
+
+<h4><a name="build_windows_get_vs">Build Tools for Visual Studio 2019 の取得</a></h4>
+<p>
+<a href="https://visualstudio.microsoft.com/ja/downloads/">https://visualstudio.microsoft.com/ja/downloads/</a> にある「すべてのダウンロード」内「Visual Studio 2019 のツール」から <tt>Build Tools for Visual Studio 2019</tt> をダウンロード、インストールを行います。インストール先フォルダはどこでもかまいません。「C++ Build Tools」を含めたインストールを行ってください。
+</p>
+
+<h4><a name="build_windows_set_path">プログラムを起動できるよう設定する</a></h4>
+<p>
+開いてあるコマンドラインから以下のように入力します：
+<code>echo set PATH=^%PATH^%;C:\Vim\PortableGit\cmd &gt; C:\Vim\env.cmd</code>
+</p>
+
+<h4><a name="build_windows_get_source">Vim のソースコードを取得</a></h4>
+<p>
+まず、以下のように入力してコマンドラインを閉じます：
+<code>exit</code>
+</p>
+<p>
+スタートメニューの <tt>Visual Studio 2019</tt> フォルダ内 <tt>x64 Native Tools Command Prompt for VS 2019</tt> を選択し、新しいコマンドラインを開きます。以下のように入力し、<tt>C:\Vim</tt> に移動してください：
+<code>cd C:\Vim</code>
+以下のように入力すれば、以後 <tt>git</tt> を利用できるよう設定されます：
+<code>env</code>
+<tt>git</tt> を利用して <tt>Vim</tt> のソースコードを取得します：
+<code>git clone https://github.com/vim/vim --depth=1</code>
+<tt>C:\Vim\vim</tt> フォルダにソースコードが展開されました。
+</p>
+
+<h3><a name="build_windows_build">ビルド</a></h3>
+<p>
+ビルドが必要なのは、プログラムと、言語ごとのメッセージテキストファイルです。
+</p>
+
+<h4><a name="build_windows_binary">プログラムのビルド</a></h4>
+<p>
+<tt>C:\Vim\vim\src</tt> フォルダに移動します：
+<code>cd C:\Vim\vim\src</code>
+以下のように入力すると、ビルドが始まります。( ) は読みかえてください：
+<code>nmake /f Make_mvc.mak CPU=AMD64 GUI=(yes/no)</code>
+コンソール版 vim.exe をビルドするなら：
+<code>nmake /f Make_mvc.mak CPU=AMD64 GUI=no</code>
+GUI 版 gvim.exe をビルドするなら：
+<code>nmake /f Make_mvc.mak CPU=AMD64 GUI=yes</code>
+とします。
+</p>
+
+<h4><a name="build_windows_text">メッセージテキストファイルのビルド</a></h4>
+<p>
+メッセージテキストファイルは <tt>C:\Vim\vim\src\po</tt> フォルダにあるので、移動します：
+<code>cd C:\Vim\vim\src\po</code>
+以下のように入力してください：
+<code>for %I in (*.po) do nmake /f Make_mvc.mak %~nI.mo "GETTEXT_PATH=C:\Vim\gettext\bin"</code>
+</p>
+
+<h3><a name="build_windows_install">生成したバイナリファイルの配置</a></h3>
+
+<h4><a name="build_windows_install_binary">プログラムの配置</a></h4>
+<p>
+プログラム <tt>vim.exe</tt> か <tt>gvim.exe</tt> のあるフォルダ <tt>C:\Vim\vim\src</tt> へ移動します：
+<code>cd C:\Vim\vim\src</code>
+プログラムをフォルダ <tt>C:\Vim\Vim81</tt> に配置したいのでフォルダを作ります：
+<code>mkdir C:\Vim\Vim81</code>
+そのフォルダに移動しておきます：
+<code>cd C:\Vim\Vim81</code>
+周辺ツールの <tt>tee.exe</tt> をコピーします：
+<code>copy /y C:\Vim\vim\src\tee\tee.exe</code>
+同様に <tt>xxd.exe</tt>もコピーします：
+<code>copy /y C:\Vim\vim\src\xxd\xxd.exe</code>
+フォルダ <tt>C:\Vim\vim\runtime</tt> の中身をすべてコピーします：
+<code>xcopy C:\Vim\vim\runtime C:\Vim\Vim81 /E /H /I /Y</code>
+プログラムをコピーします：
+<code>copy /y C:\Vim\vim\src\*.exe</code>
+</p>
+
+<h4><a name="build_windows_install_dll">gettext/iconv の配置</a></h4><a name="build_windows_install_dll">
+<p>
+gettext (libintl) をコピーします：
+<code>copy /y C:\Vim\gettext64\bin\libintl-8.dll</code>
+iconv をコピーします：
+<code>copy /y C:\Vim\gettext64\bin\libiconv-2.dll</code>
+gvimext をコピーする先のフォルダを作成します：
+<code>mkdir GvimExt64</code>
+gvimext をコピーします：
+<code>copy /y C:\Vim\vim\src\GvimExt\gvimext.dll GvimExt64</code>
+さらにコピーしておきます：
+<code>copy /y lib*.dll GvimExt64</code>
+</p>
+
+</a><h4><a name="build_windows_install_dll"></a><a name="build_windows_install_text">メッセージテキストファイルの配置</a></h4>
+<p>
+メッセージテキストファイルがあるフォルダに移動します：
+<code>cd C:\Vim\vim\src\po</code>
+以下のように入力してください：
+<code>for %I in (*.mo) do nmake /f Make_mvc.mak install LANGUAGE=%~nI "VIMRUNTIME=C:\Vim\Vim81"</code>
+</p>
+
+
+
+</body></html>

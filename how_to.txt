@@ -1,0 +1,20 @@
+Vimビルドまとめ
+
+- msys2をインストール (https://www.msys2.org/)
+- msys2-x86_64-YYYYMMDD.exeは、64bit版
+- 参考 : "C:\msys64\usr\local\src\hysvim\MSYS2 +α - 構築手順備忘録 - Qiita.html"
+- 公式サイトにも簡単なインストール方法が描いてある
+
+- pacmanで初期化、複数回実行する場合あり
+- pacman -Syu(初回)
+- pacman -Su(2回目以降) 
+- pacmanでgit, mingwをインストール
+
+- usr/local/src を作成
+- usr/local/src にvimをgithubからcloneする
+
+- build_setting.sh のpythonのパスを修正
+- usr/local/src/vim/srcで、build_setting.shを実行
+
+- japanese_setting.batのパスを修正
+- imigrator.batを起動
