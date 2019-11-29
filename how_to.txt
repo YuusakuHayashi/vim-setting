@@ -10,11 +10,22 @@ Vimビルドまとめ
 - pacman -Su(2回目以降) 
 - pacmanでgit, mingwをインストール
 
-- usr/local/src を作成
-- usr/local/src にvimをgithubからcloneする
+- usr/local/project/vim-setting を作成
+- usr/local/project/vim-setting にvimをgithubからcloneする
+-- git clone https://github.com/vim/vim --depth=1
 
 - build_setting.sh のpythonのパスを修正
-- usr/local/src/vim/srcで、build_setting.shを実行
+- usr/local/project/vim-setting/vim/srcで、build_setting.shを実行(MinGW環境で実行する事)
 
 - japanese_setting.batのパスを修正
 - imigrator.batを起動
+
+dein.vim インストール
+
+- usr/local/src/vimfiles を作成
+- usr/local/src/vimfiles/.cache を作成
+- usr/local/src/vimfiles で 
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh ./vimfiles/.cache
+
+- usr/local/src/vimfile に imigrator_dein.batをコピー&実行

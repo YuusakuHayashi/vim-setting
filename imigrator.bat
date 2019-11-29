@@ -1,27 +1,27 @@
 @echo off
 
-:: æ¦‚è¦
-:: 	- msysã§ãƒ“ãƒ«ãƒ‰ã—ãŸVimã‚’ä»–ãƒ¦ãƒ¼ã‚¶ç’°å¢ƒã«ç§»è¡Œã™ã‚‹
+:: ŠT—v
+:: 	- msys‚Åƒrƒ‹ƒh‚µ‚½Vim‚ğ‘¼ƒ†[ƒUŠÂ‹«‚ÉˆÚs‚·‚é
 :: HISTORY
-:: 	- 2019/11/24 : æ–°è¦ä½œæˆ
-:: å‚è€ƒ
-:: 	- "C:\msys64\usr\local\src\hysvim\Vim ãƒ¡ãƒ¢.html"
+:: 	- 2019/11/24 : V‹Kì¬
+:: Ql
+:: 	- "C:\msys64\usr\local\src\hysvim\Vim ƒƒ‚.html"
 :: NOTE
-:: 	- ãƒ‘ã‚¹ã¯å›ºå®šã§å…¥ã‚Œã¦ã„ã‚‹ã®ã§ã€æ§‹æˆã‚’å¤‰ãˆã‚‹æ™‚ã¯ä¿®æ­£å¿…è¦
+:: 	- ƒpƒX‚ÍŒÅ’è‚Å“ü‚ê‚Ä‚¢‚é‚Ì‚ÅA\¬‚ğ•Ï‚¦‚é‚ÍC³•K—v
 ::
 
 
 :INIT_RTN
 ::openfiles > NUL 2>&1 
 ::if NOT %ERRORLEVEL% EQU 0 goto MAIN_RTN
-::echo ç®¡ç†è€…æ¨©é™ã§å®Ÿè¡Œã®ãŸã‚ã€çµ‚äº†
+::echo ŠÇ—ÒŒ ŒÀ‚ÅÀs‚Ì‚½‚ßAI—¹
 ::goto EXIT_RTN
 
 :MAIN_RTN
 cd /d %~dp0
 
 set distination="C:\Program Files (x86)\Vim\vim81"
-set vim_path=C:\msys64\usr\local\src\vim
+set vim_path=C:\msys64\usr\local\project\vim-setting\vim
 set vim_source=%vim_path%\src
 set vim_runtime=%vim_path%\runtime
 
@@ -32,7 +32,8 @@ copy /y 	%vim_source%\xxd\xxd.exe
 xcopy 		%vim_runtime% %distination% /E /H /I /Y
 copy /y 	%vim_source%\*.exe
 
-:: !!! ãƒ‘ã‚¹ã®æŒ‡å®šãŒå¿…è¦ãªã®ã§ã€å®Ÿè¡Œå‰ã«å…¥åŠ›ã™ã‚‹ã“ã¨ !!!
+:: !!! ƒpƒX‚Ìw’è‚ª•K—v‚È‚Ì‚ÅAÀs‘O‚É“ü—Í‚·‚é‚±‚Æ !!!
+cd /d %~dp0
 call japanese_setting.bat
 
 cd /d %~dp0

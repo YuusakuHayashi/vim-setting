@@ -1,30 +1,30 @@
 @echo off
 
-:: æ¦‚è¦
-:: 	- æ—¥æœ¬èªè¨­å®šã‚’ä»–ãƒ¦ãƒ¼ã‚¶ç’°å¢ƒã¸ç§»è¡Œã™ã‚‹ï¼Ÿ 
+:: ŠT—v
+:: 	- “ú–{Œêİ’è‚ğ‘¼ƒ†[ƒUŠÂ‹«‚ÖˆÚs‚·‚éH 
 :: HISTORY
-:: 	- 2019/11/24 : æ–°è¦ä½œæˆ
-:: å‚è€ƒ
-:: 	- "C:\msys64\usr\local\src\hysvim\Vim_GVimã®ãƒ“ãƒ«ãƒ‰ã¨å®Ÿè¡Œç’°å¢ƒã®ä½œæˆ - fudist.html" 
+:: 	- 2019/11/24 : V‹Kì¬
+:: Ql
+:: 	- "C:\msys64\usr\local\src\hysvim\Vim_GVim‚Ìƒrƒ‹ƒh‚ÆÀsŠÂ‹«‚Ìì¬ - fudist.html" 
 :: NOTE
-:: 	- æ­£ç›´ã»ã¼ã‚³ãƒ”ãƒšã—ãŸã ã‘ã§ã€ä½•ã‚’ã—ã¦ã„ã‚‹ã®ã‹è‰¯ãåˆ†ã‹ã‚‰ãªã„ 
-:: 	- jp.po -> jp.moã«pythonã‚’ä½¿ã£ã¦å¤‰æ›ã™ã‚‹ã€‚ãã‚Œã‚’ãƒ¦ãƒ¼ã‚¶ç’°å¢ƒã¸ã‚³ãƒ”ãƒ¼ã™ã‚‹
+:: 	- ³’¼‚Ù‚ÚƒRƒsƒy‚µ‚½‚¾‚¯‚ÅA‰½‚ğ‚µ‚Ä‚¢‚é‚Ì‚©—Ç‚­•ª‚©‚ç‚È‚¢ 
+:: 	- jp.po -> jp.mo‚Épython‚ğg‚Á‚Ä•ÏŠ·‚·‚éB‚»‚ê‚ğƒ†[ƒUŠÂ‹«‚ÖƒRƒs[‚·‚é
 ::
 
 ::openfiles > NUL 2>&1 
 ::if NOT %ERRORLEVEL% EQU 0 goto MAIN_RTN
-::echo ç®¡ç†è€…æ¨©é™ã§å®Ÿè¡Œã®ãŸã‚ã€çµ‚äº†
+::echo ŠÇ—ÒŒ ŒÀ‚ÅÀs‚Ì‚½‚ßAI—¹
 ::goto END_RTN
 
 :MAIN_RTN
 cd /d %~dp0
 set distination="C:\Program Files (x86)\Vim\vim81"
 set dist_lang=%distination%\lang\ja\LC_MESSAGES
-set vim_path=C:\msys64\usr\local\src\vim
+set vim_path=C:\msys64\usr\local\project\vim-setting\vim
 set vim_source=%vim_path%\src
 ::set vim_runtime=%vim_path%\runtime
 cd %vim_source%\po
-:: pythonãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ãƒ‘ã‚¹ã‚’æŒ‡å®šã™ã‚‹
+:: python‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚éƒpƒX‚ğw’è‚·‚é
 set python_path=C:\Users\***************\AppData\Local\Programs\Python\Python36-32
 
 %python_path%\python.exe %python_path%\tools\i18n\msgfmt.py ja.po
