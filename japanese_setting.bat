@@ -20,12 +20,12 @@
 cd /d %~dp0
 set distination="C:\Program Files (x86)\Vim\vim81"
 set dist_lang=%distination%\lang\ja\LC_MESSAGES
-set vim_path=C:\msys64\usr\local\project\vim-setting\vim
+set vim_path=C:\msys64\home\yuusaku.hayashi\local\vim
 set vim_source=%vim_path%\src
 ::set vim_runtime=%vim_path%\runtime
 cd %vim_source%\po
 :: pythonがインストールされているパスを指定する
-set python_path=C:\Users\***************\AppData\Local\Programs\Python\Python36-32
+set python_path=%USERPROFILE%\AppData\Local\Programs\Python\Python36-32
 
 %python_path%\python.exe %python_path%\tools\i18n\msgfmt.py ja.po
 

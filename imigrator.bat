@@ -21,7 +21,7 @@
 cd /d %~dp0
 
 set distination="C:\Program Files (x86)\Vim\vim81"
-set vim_path=C:\msys64\usr\local\project\vim-setting\vim
+set vim_path=C:\msys64\home\yuusaku.hayashi\local\vim
 set vim_source=%vim_path%\src
 set vim_runtime=%vim_path%\runtime
 
