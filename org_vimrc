@@ -40,3 +40,6 @@ nnoremap <Space>glog :<C-u>Gdiff<Enter>
 nnoremap <Space>gadd :<C-u>Gwrite<Enter>
 nnoremap <Space>gcommit :<C-u>Gcommit<Enter>
 "-----------------------
+"NERDTree --------------
+nnoremap <silent><C-e> :NERDTreeToggle<Enter>
+"-----------------------
