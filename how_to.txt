@@ -8,24 +8,35 @@ Vimビルドまとめ
 - pacmanで初期化、複数回実行する場合あり
 - pacman -Syu(初回)
 - pacman -Su(2回目以降) 
-- pacmanでgit, mingwをインストール
+pacman -S base-devel msys2-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain mingw-w64-x86_64-boost vim openssh sshpass git unzip rsync tmux
+pacman -S gcc ncurses-devel libiconv-devel 
 
-- usr/local/project/vim-setting を作成
-- usr/local/project/vim-setting にvimをgithubからcloneする
+- ~/local を作成
+- ~/local にvimをgithubからcloneする
 -- git clone https://github.com/vim/vim --depth=1
+-- (--depth=1は不要)
 
+*----------------------------------------------------------------------------------------*
+CMD.EXE版Vimコンパイル
 - build_setting.sh のpythonのパスを修正
 - usr/local/project/vim-setting/vim/srcで、build_setting.shを実行(MinGW環境で実行する事)
-
 - japanese_setting.batのパスを修正
 - imigrator.batを起動
+*----------------------------------------------------------------------------------------*
+
+*----------------------------------------------------------------------------------------*
+mintty版Vimコンパイル
+- set_configure.sh を ~/local/vim/src へ コピー
+- make -j
+- make install
+
+- .bashrc に ~/local/bin/vim.exe のエイリアス追加
+-- alias vim=~/local/bin/vim.exe
+*----------------------------------------------------------------------------------------*
 
 dein.vim インストール
 
-- usr/local/src/vimfiles を作成
-- usr/local/src/vimfiles/.cache を作成
-- usr/local/src/vimfiles で 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh ./vimfiles/.cache
-
-- usr/local/src/vimfile に imigrator_dein.batをコピー&実行
+- ~/local/.cache/dein を作成
+- ~/local で
+-- curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+-- sh ./installer.sh ./.cache/dein
