@@ -189,3 +189,4 @@
 # 
 # alias cd=cd_func
 alias vim=~/local/bin/vim.exe
+export PYTHONPATH="/home/yuusaku.hayashi/local/rpa_project/python/lib:$PYTHONPATH"
