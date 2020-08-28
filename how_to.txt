@@ -9,7 +9,8 @@ Vimビルドまとめ
 - pacman -Syu(初回)
 - pacman -Su(2回目以降) 
 pacman -S base-devel msys2-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain mingw-w64-x86_64-boost vim openssh sshpass git unzip rsync tmux
-pacman -S gcc ncurses-devel libiconv-devel 
+pacman -S gcc ncurses-devel libiconv-devel
+pacman -S make
 
 - ~/local を作成
 - ~/local にvimをgithubからcloneする
